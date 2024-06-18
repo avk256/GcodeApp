@@ -179,10 +179,12 @@ with col1:
             
             print(default_text)
             text = st.text_area("Generated G-code", value=default_text, height=500)
-            
-            # text = st.text_area("Enter text here", value=default_text, height=300)
-            # save_button =st.download_button('Download CSV', st.text_area, 'text/csv') #st.button("Save G-code")
+
             st.download_button(label="Save G-code", data=text, file_name="part.gcode")
+
+            st.page_link("https://nraynaud.github.io/webgcode/", label="Test G-code", icon="🌎")
+            # save_button =st.download_button('Download CSV', st.text_area, 'text/csv') #st.button("Save G-code")
+            
             # if save_button:
             #     filename = st.text_input("Enter filename to save text", value="example_text.txt")
             #     with open('part.gcode', 'w') as f:
