@@ -178,7 +178,7 @@ with col1:
             default_text = decode_gcode_info(gcode)
             
             print(default_text)
-            text = st.text_area("Generated G-code", value=default_text, height=300)
+            text = st.text_area("Generated G-code", value=default_text, height=500)
             
             # text = st.text_area("Enter text here", value=default_text, height=300)
             # save_button =st.download_button('Download CSV', st.text_area, 'text/csv') #st.button("Save G-code")
