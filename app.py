@@ -181,8 +181,8 @@ with col1:
     if uploaded_file is not None:
         temp_file = tempfile.NamedTemporaryFile(delete=False)
         temp_file.write(uploaded_file.getvalue())
-        your_mesh = mesh.Mesh.from_file(temp_file.name)
-        fig = plot_stl_plotly(your_mesh)
+        #your_mesh = mesh.Mesh.from_file(temp_file.name)
+        fig = plot_stl_plotly(uploaded_file.name)
         st.plotly_chart(fig, use_container_width=True)
         os.unlink(temp_file.name)
         print(uploaded_file.name)
