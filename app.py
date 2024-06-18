@@ -166,6 +166,8 @@ maxx = st.sidebar.number_input('MAXX')
 maxy = st.sidebar.number_input('MAXY')
 maxz = st.sidebar.number_input('MAXZ')
 
+params = ['creatbot-dx', filament_diameter, layer_height, minx, miny, minz, maxx, maxy, maxz]
+
 
 # Колонки для відображення діаграми та тексту
 col1, col2 = st.columns(2)
