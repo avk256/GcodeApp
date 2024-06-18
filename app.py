@@ -182,12 +182,17 @@ with col1:
         temp_file = tempfile.NamedTemporaryFile(delete=False)
         temp_file.write(uploaded_file.getvalue())
         #your_mesh = mesh.Mesh.from_file(temp_file.name)
-        fig = plot_stl_plotly(uploaded_file.name)
+        fig = plot_stl_plotly(temp_file.name)
         st.plotly_chart(fig, use_container_width=True)
         os.unlink(temp_file.name)
         print(uploaded_file.name)
+
+        temp_file2 = tempfile.NamedTemporaryFile(delete=False, mode="w+b")
+        temp_file2.write(uploaded_file.getvalue())
+
+        os.rename(temp_file2.name, '/tmp/tmp.stl')
         
-        resp_gcode = get_gcode(uploaded_file.name)
+        resp_gcode = get_gcode('/tmp/tmp.stl')
         gcode = download_file(resp_gcode)
 
 
