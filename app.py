@@ -195,12 +195,14 @@ with col1:
             st.header("G-code")
             
             default_text = gcode
-            default_text = decode_gcode_info(gcode)
 
             bstr = trim_gcode_data(default_text)
 
             bgcode = bhead + bstr
-            gcode_text = bhead.format(*params)
+            gcode_text = decode_gcode_info(bgcode)
+
+            
+            gcode_text = gcode_text.format(*params)
             
             text = st.text_area("Generated G-code", value=gcode_text, height=500)
 
