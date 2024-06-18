@@ -128,20 +128,8 @@ def get_gcode(stl_file):
 def decode_gcode_info(gcode_binary):
     # Декодування бінарної строки
     gcode_text = gcode_binary.decode('utf-8')
-
-    # Розділення строки на частини за допомогою символа нового рядка
-    lines = gcode_text.split('\n')
-
-    # Відображення кожного рядка
-    for line in lines:
-        if line:  # перевірка на порожній рядок
-            print(line)
-
-# # Тестування функції з вашим прикладом
-gcode_binary = b';FLAVOR:Marlin\n;TARGET_MACHINE.NAME:Unknown\n;TIME:6666\n;Filament used: 0m\n;Layer'
-test = str(decode_gcode_info(gcode_binary))
-type(test)
-
+    return gcode_text
+ 
 
 st.set_page_config(layout="wide")
 
@@ -187,7 +175,7 @@ with col1:
             st.header("G-code")
             
             default_text = gcode
-            # default_text = str(decode_gcode_info(gcode))
+            default_text = decode_gcode_info(gcode)
             
             print(default_text)
             text = st.text_area("Generated G-code", value=default_text, height=300)
