@@ -129,7 +129,25 @@ def decode_gcode_info(gcode_binary):
     # Декодування бінарної строки
     gcode_text = gcode_binary.decode('utf-8')
     return gcode_text
- 
+
+
+def trim_gcode_data(byte_string):
+    # Ключове слово, починаючи з якого потрібно залишити дані
+    key_phrase = b';Generated'
+    
+    # Знаходимо індекс, де починається ключове слово
+    start_index = byte_string.find(key_phrase)
+    
+    # Якщо ключове слово знайдено, повертаємо частину строки починаючи з цього індексу
+    if start_index != -1:
+        return byte_string[start_index:]
+    else:
+        # Якщо ключове слово не знайдено, повертаємо оригінальну строку або повідомлення
+        return "Key phrase not found in the byte string."
+
+######################## Частини G-code з налаштуваннями
+
+bhead = b';FLAVOR:Marlin\n;TARGET_MACHINE.NAME:{0}\n;TIME:6666\n;Filament used: {1}m\n;Layer height: {2}\n;MINX:{3}\n;MINY:{4}\n;MINZ:{5}\n;MAXX:{6}\n;MAXY:{7}\n;MAXZ:{8}\n\n'
 
 st.set_page_config(layout="wide")
 
@@ -176,9 +194,13 @@ with col1:
             
             default_text = gcode
             default_text = decode_gcode_info(gcode)
+
+            bstr = trim_gcode_data(default_text)
+
+            bgcode = bhead + bstr
+            gcode_text = bhead.format(*params)
             
-            print(default_text)
-            text = st.text_area("Generated G-code", value=default_text, height=500)
+            text = st.text_area("Generated G-code", value=gcode_text, height=500)
 
             st.download_button(label="Save G-code", data=text, file_name="part.gcode")
 
