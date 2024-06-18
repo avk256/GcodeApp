@@ -1,0 +1,6 @@
+matplotlib==3.9.0
+numpy==2.0.0
+numpy_stl==3.1.1
+plotly==5.22.0
+Requests==2.32.3
+streamlit==1.35.0
