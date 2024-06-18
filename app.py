@@ -36,7 +36,7 @@ def plot_stl_plotly(stl_filename):
         return vertices, I, J, K
 
 
-    my_mesh = mesh.Mesh.from_file('8teeth-gear.stl')
+    my_mesh = mesh.Mesh.from_file(stl_filename)
     
     my_mesh.vectors.shape
     
